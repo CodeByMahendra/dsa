@@ -34,8 +34,8 @@ void flatten(TreeNode* root) {
                 temp = temp->right;
 
             temp->right = curr->right;
-            curr->left = NULL;
             curr->right = curr->left;
+            curr->left = NULL;
         }
         curr = curr->right;
     }
