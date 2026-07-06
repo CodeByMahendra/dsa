@@ -25,20 +25,75 @@ Approach:
 
 Code:
 */
+  // using sorting 
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
 
-bool isAnagram(string s, string t) {
-    unordered_map<char,int>mp;
-    for(auto c:s)
-        mp[c]++;
-    for(auto c:t){
-        if(mp.find(c)==mp.end())
+        if (s.size() != t.size())
             return false;
-        mp[c]--;
-        if(mp[c]==0)
-            mp.erase(c);
+
+        sort(s.begin(), s.end());
+        sort(t.begin(), t.end());
+
+        return s == t;
     }
-    return (mp.size()==0);
-}
+};
+
+
+
+
+ // using array frquency wit lowercase leteer
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+
+        if (s.size() != t.size())
+            return false;
+
+        vector<int> freq(26, 0);
+
+        for (char ch : s)
+            freq[ch - 'a']++;
+
+        for (char ch : t)
+            freq[ch - 'a']--;
+
+        for (int count : freq) {
+            if (count != 0)
+                return false;
+        }
+
+        return true;
+    }
+};
+
+
+
+// using aarya frquency with both lowercase and uppercase letters
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+
+        if (s.size() != t.size())
+            return false;
+
+        vector<int> freq(128, 0);
+
+        for (char ch : s)
+            freq[ch]++;
+
+        for (char ch : t)
+            freq[ch]--;
+
+        for (int x : freq) {
+            if (x != 0)
+                return false;
+        }
+
+        return true;
+    }
+};
 
 /* 
 Time complexity: O(max(s.length(), t.length()))

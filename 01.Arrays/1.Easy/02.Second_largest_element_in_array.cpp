@@ -23,18 +23,21 @@ APPROACH
 // CODE:-
 int print2largest(int arr[], int n)
 {
-    int prev = -1, curr = arr[0];
-    for (int i = 1; i < n; i++)
+    int first = INT_MIN, second = INT_MIN;
+
+    for(int i=0;i<n;i++)
+        first = max(first, arr[i]);
+
+    for(int i=0;i<n;i++)
     {
-        if (arr[i] > curr)
-        {
-            prev = curr;
-            curr = arr[i];
-        }
-        else if (arr[i] > prev && arr[i] != curr)
-            prev = arr[i];
+        if(arr[i] != first)
+            second = max(second, arr[i]);
     }
-    return prev;
+
+    if(second == INT_MIN)
+        return -1;
+
+    return second;
 }
 
 // TIME COMPLEXITY = O(N)

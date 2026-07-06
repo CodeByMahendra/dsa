@@ -19,23 +19,30 @@ Space Complexity: O(1)
 Code:
 */
 
-using namespace std;
+
+Sir, sorting ke baad first aur last string lexicographically sabse zyada 
+different hoti hain. Agar in dono ka common prefix sirf 'fl' hai, to beech ki koi
+ bhi string usse zyada common prefix nahi rakh sakti. Isliye sirf first aur last compare
+  karna hi sufficient hota hai
 
 string longestCommonPrefix(vector<string>& strs) {
+
     if (strs.empty())
         return "";
 
     sort(strs.begin(), strs.end());
 
-    int first = 0, last = strs.size() - 1;
-    int i = 0, j = 0;
-    int len = 0;
+    string first = strs.front();
+    string last = strs.back();
 
-    while (i < strs[first].size() && j < strs[last].size() && strs[first][len] == strs[last][len]) {
+    int i = 0;
+
+    while (i < first.size() &&
+           i < last.size() &&
+           first[i] == last[i])
+    {
         i++;
-        j++;
-        len++;
     }
 
-    return strs[first].substr(0, len);
+    return first.substr(0, i);
 }

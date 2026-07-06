@@ -23,7 +23,7 @@ APPROACH:-
 // CODE:-
 int largest(int arr[], int n)
 {
-    int ans = arr[0];
+    int ans = INT_MIN; // Initialize ans with the minimum integer value
     for (int i = 1; i < n; i++)
     {
         if (arr[i] > ans)
