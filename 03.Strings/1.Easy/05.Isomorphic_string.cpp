@@ -17,21 +17,38 @@ Code:
 */
 
 bool isIsomorphic(string s, string t) {
-    unordered_map<char, char> mps;
-    unordered_map<char, char> mpt;
 
-    for (int i = 0; i < s.size(); i++) {
-        if (mps.find(s[i]) == mps.end() && mpt.find(t[i]) == mpt.end()) {
-            mps[s[i]] = t[i];
-            mpt[t[i]] = s[i];
-        } else if (mps[s[i]] != t[i] || mpt[t[i]] != s[i]) {
+    for(int i=0;i<s.size();i++){
+
+        if(s.find(s[i])!=t.find(t[i]))
             return false;
-        }
+
     }
 
     return true;
 }
 
+
+
+
+
+
+bool isIsomorphic(string s, string t) {
+
+    vector<int> mapS(256, -1);
+    vector<int> mapT(256, -1);
+
+    for (int i = 0; i < s.size(); i++) {
+
+        if (mapS[s[i]] != mapT[t[i]])
+            return false;
+
+        mapS[s[i]] = i;
+        mapT[t[i]] = i;
+    }
+
+    return true;
+}
 /*
 Time Complexity: O(n), where n is the length of the input strings s and t.
 - We iterate through each character of s and t once.

@@ -22,17 +22,18 @@ APPROACH:-
 */
 
 // CODE:-
-int missingNumber(vector<int> &nums)
-{
-    int n = nums.size();
-    long long optimum_sum = (n * (n + 1)) / 2; // the sum if no number is absent
-    long long actual_sum = 0;
-    for (auto it : nums)
-    {
-        actual_sum += it;
+
+int missingNumber(vector<int> &num){
+    int n = num.size();
+    int totalSum = (n*(n+1))/2;
+    int actualSum = 0;
+    for(int i=0; i<n; i++){
+        actualSum += num[i];
     }
-    return optimum_sum - actual_sum;
+    return totalSum - actualSum;
+    
 }
+
 
 // TIME COMPLEXITY = O(N)
 // SPACE COMPLEXITY = O(0)

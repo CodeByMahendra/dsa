@@ -22,8 +22,25 @@ CODE:
 */
 
 int searchInsert(vector<int>& nums, int target) {
-    auto ans = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
-    return ans;
+    int start=0; 
+    int end=nums.size()-1;
+    int ans=-1;
+    while(start<=end){
+        int mid =start+(end-start)/2;
+        if(nums[mid]==target){
+            ams=mid;
+            break;
+        }
+        else if(nums[mid]>target){
+
+            ans = mid;
+            end=mid-1;
+        }
+        else{
+
+            start=mid+1;
+        }
+    }
 }
 
 // TIME COMPLEXITY: O(log n) due to the use of lower_bound function

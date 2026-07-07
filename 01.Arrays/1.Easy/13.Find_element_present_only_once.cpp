@@ -32,5 +32,9 @@ int singleNumber(vector<int> &nums)
     return xr;
 }
 
+
+"XOR has two important properties: a ^ a = 0 and a ^ 0 = a. Since every number except one appears exactly twice, 
+all duplicate numbers cancel each other out, leaving only the unique element."
+
 // TIME COMPLEXITY = O(N)
 // SPACE COMPLEXITY = O(0)
