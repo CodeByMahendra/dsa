@@ -11,11 +11,17 @@ Here, the length of the longest subarray is 3, which is our final answer.
 */
 
 /*
+/*
 APPROACH:-
--> Use sliding window approach using two pointers start and end
--> Run a loop to traverse the entire array add from end and subtract from start when sum>k
--> If sum==k then, update the ans now, window size = end-start+1
+-> This approach works only when all array elements are positive (or non-negative).
+-> Use two pointers 'start' and 'end' to maintain a sliding window.
+-> Expand the window by moving 'end' and add a[end] to the current sum.
+-> If the current sum becomes greater than K, shrink the window from the left
+   until the sum becomes less than or equal to K.
+-> Whenever the current sum becomes equal to K, update the answer with the
+   current window size.
 */
+
 
 // CODE:-
 int longestSubarrayWithSumK(vector<int> a, long long k)
@@ -23,21 +29,23 @@ int longestSubarrayWithSumK(vector<int> a, long long k)
     int start = 0;
     int ans = 0;
     long long sum = 0;
-    int n = a.size();
 
-    for (int end = 0; end < n; end++)
+    for (int end = 0; end < a.size(); end++)
     {
         sum += a[end];
+
         while (sum > k)
         {
             sum -= a[start];
             start++;
         }
+
         if (sum == k)
         {
             ans = max(ans, end - start + 1);
         }
     }
+
     return ans;
 }
 
